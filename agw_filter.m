@@ -1,16 +1,23 @@
 function [Data,Time]=agw_filter(Data, Time, DataMin, DataMax)
 %
-% [DataF,TimeF]=agw_filter(Data, Time, DataMax, DataMin)
+% [Data,Time]=agw_filter(Data, Time, DataMin, DataMax)
 %
 % Function to threshold and adaptive Gaussian filter data that is a
 % function of one variable (assumed to be time here but could be one
 % spatial coordinate).
 %
-% DataF - returned matrix of filtered data
-% TimeF - returned vecotr of times of filtered data
 % Data  - Data matrix to be filtered - assumed to be a function of 1
-%         variable and that dependence coincides with the longer dimension of the
-%         matrix
+%         variable and that dependence coincides with the longer dimension 
+%         of thematrix, i.e., 3-components of velocity in 3 columns as a 
+%         function of time in the rows which will be more than 3 rows long.  
+%       - Note that the filtered version of Data is returned in Data to be
+%         efficient with memory.  The calling code likely wants to store 
+%         the returned data in a new variable - see provided test code,
+% Time -  Vector of sample times (or spatial position in 1-D) and returned 
+%         vector of filtered times (spatial locaitons). 
+%       - Note that the filtered version of Time is returned in Time to be
+%         efficient with memory.  The calling code likely wants to store 
+%         the returned Time in a new variable - see provided test code,
 % DataMax - Maximum allowable value in the data set
 % DataMin - Minimum allowable value in the data set
 %
